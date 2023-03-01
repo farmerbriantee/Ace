@@ -2046,7 +2046,7 @@ namespace AgOpenGPS
                 font.DrawText(center, 55, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
                 font.DrawText(center, 80, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
                 //font.DrawText(center, 110, "R:" + Math.Round(ahrs.imuRoll, 1).ToString(), 0.8);
-                //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
+                font.DrawText(center, 105, "Yaw:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
             }
 
             //if (isConstantContourOn)
