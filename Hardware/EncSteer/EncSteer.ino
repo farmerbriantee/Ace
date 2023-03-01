@@ -196,7 +196,6 @@
       pinMode(REMOTE_PIN, INPUT_PULLUP);
       pinMode(DIR1_RL_ENABLE, OUTPUT);
 
-      //Enable Cytron Freewheel MOD pin
       if (steerConfig.CytronDriver) pinMode(PWM2_RPWM, OUTPUT);
 
       //set up communication
