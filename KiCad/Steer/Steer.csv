@@ -1,25 +1,80 @@
-Collated Components:,,,,,,,,,
-,,,,,,,,,
-Item,Qty,Reference(s),Value,LibPart,Footprint,Datasheet,,,
-1,1,C1,470uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D8.0mm_P5.00mm,~,,,
-2,1,C3,220uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D8.0mm_P3.50mm,~,,,
-3,6,"C9, C11, C12, C14, C15, C16",0.1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~,,,
-4,1,C10,1uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D6.3mm_P2.50mm,~,,,
-5,1,C13,1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~,,,
-6,3,"D5, D6, D7",LED,Device:LED,LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop,~,,,
-7,2,"D9, D10",BAT42,Diode:BAT42,Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal,http://www.vishay.com/docs/85660/bat42.pdf,,,
-8,1,J1,RJ45_Abracon_ARJP11A-MASA-B-A-EMU2,Connector:RJ45_Abracon_ARJP11A-MASA-B-A-EMU2,Connector_RJ:RJ45_Abracon_ARJP11A-MA_Horizontal,https://abracon.com/Magnetics/lan/ARJP11A.PDF,,,
-9,1,J3,B Micro USB,Connector:USB_B_Micro,AA_Foots:USB_Mini_B_AdamTech_musb_b5_s_vt_02_TH,~,,,
-10,1,J4,Chassis,Connector:Screw_Terminal_01x01,Connector_Pin:Pin_D1.3mm_L11.3mm_W2.8mm_Flat,~,,,
-11,1,J6,Rx2 Tx2 Gnd,Connector:Conn_01x03_Male,Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical,~,,,
-12,3,"R2, R3, R9",1k,Device:R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,~,,,
-13,1,R5,1k,Device:R,Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P2.54mm_Vertical,~,,,
-14,1,R7,470,Device:R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,~,,,
-15,1,R8,10k,Device:R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,~,,,
-16,1,R11,2k,Device:R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,~,,,
-17,1,RV1,1k,Device:R_Potentiometer_US,Potentiometer_THT:Potentiometer_Bourns_3296Y_Vertical,~,,,
-18,1,U1,3.3V Reg,Converter_DCDC:OKI-78SR-3.3_1.5-W36-C,Converter_DCDC:Converter_DCDC_Murata_OKI-78SR_Vertical,https://power.murata.com/data/power/oki-78sr.pdf,,,
-19,1,U3,Teensy 4.1,teensy4.1_nohost_bgt:teensy4.1_NoHost_BGT,AA_Foots:Teensy41_BGT,,,,
-20,1,U4,Ada BNO085,BNO085_4754:4754,AA_Foots:BNO085_Adafruit_4754,,,,
-21,1,U6,F9P Micro Right,AS-RTK2B-MICRO-F9P-L1L2SMATH-00:AS-RTK2B-MICRO-F9P-L1L2SMATH-00,AA_Foots:MODULE_AS-RTK2B-MICRO-F9P-L1L2SMATH-00,,,,
-22,1,U7,MCP6002-xP,Amplifier_Operational:MCP6002-xP,Package_DIP:DIP-8_W7.62mm,http://ww1.microchip.com/downloads/en/DeviceDoc/21733j.pdf,,,
+Individual Components:,,,,,,
+,,,,,,
+Item,Qty,Reference(s),Value,LibPart,Footprint,Datasheet
+,,A1,Arduino_Nano_v3.x,MCU_Module:Arduino_Nano_v3.x,Module:Arduino_Nano,http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
+,,C1,0.1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~
+,,C2,22uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D5.0mm_P2.50mm,~
+,,C3,22uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D5.0mm_P2.50mm,~
+,,C4,470uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D10.0mm_P5.00mm,~
+,,C5,47uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D5.0mm_P2.50mm,~
+,,C6,0.1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~
+,,C7,0.1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~
+,,C8,470uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D10.0mm_P5.00mm,~
+,,C9,0.1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~
+,,C10,0.1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~
+,,D1,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D2,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D3,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D4,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D5,LED,Device:LED,LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop,~
+,,D6,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D7,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D8,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D9,1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+,,D10,18v,Device:D_Zener,,~
+,,D11,18v,Device:D_Zener,,~
+,,D12,18v,Device:D_Zener,,~
+,,D13,18v,Device:D_Zener,,~
+,,F1,Fuse Keystone 3568,Device:Fuse,Fuse:Fuseholder_Blade_Mini_Keystone_3568,~
+,,J1,Switches,Connector:Screw_Terminal_01x04,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal",~
+,,J2,Screw_Terminal_01x04,Connector:Screw_Terminal_01x04,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal",~
+,,J3,Motor,Connector:Screw_Terminal_01x04,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal",~
+,,Q1,IRF3205,Transistor_FET:IRF3205,Package_TO_SOT_THT:TO-220-3_Vertical,http://www.irf.com/product-info/datasheets/data/irf3205.pdf
+,,Q2,IRF3205,Transistor_FET:IRF3205,Package_TO_SOT_THT:TO-220-3_Vertical,http://www.irf.com/product-info/datasheets/data/irf3205.pdf
+,,Q3,IRF3205,Transistor_FET:IRF3205,Package_TO_SOT_THT:TO-220-3_Vertical,http://www.irf.com/product-info/datasheets/data/irf3205.pdf
+,,Q4,IRF3205,Transistor_FET:IRF3205,Package_TO_SOT_THT:TO-220-3_Vertical,http://www.irf.com/product-info/datasheets/data/irf3205.pdf
+,,R1,10R,Device:R,,~
+,,R2,1k,Device:R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,~
+,,R3,10R,Device:R,,~
+,,R4,10R,Device:R,,~
+,,R5,10R,Device:R,,~
+,,R6,10k,Device:R,,~
+,,R7,10k,Device:R,,~
+,,R8,10k,Device:R,,~
+,,R9,10k,Device:R,,~
+,,R10,1K,Device:R,,~
+,,R11,1K,Device:R,,~
+,,R12,1K,Device:R,,~
+,,R13,1K,Device:R,,~
+,,U1,IR2184,Driver_FET:IR2184,,https://www.infineon.com/dgdl/ir2184.pdf?fileId=5546d462533600a4015355c955e616d4
+,,U2,5.0V Reg,Converter_DCDC:OKI-78SR-3.3_1.5-W36-C,Converter_DCDC:Converter_DCDC_Murata_OKI-78SR_Vertical,https://power.murata.com/data/power/oki-78sr.pdf
+,,U3,IR2184,Driver_FET:IR2184,,https://www.infineon.com/dgdl/ir2184.pdf?fileId=5546d462533600a4015355c955e616d4
+,,U4,ACS724LLCTR-10AB-T,Sensor_Current:ACS724xLCTR-05AB,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,http://www.allegromicro.com/~/media/Files/Datasheets/ACS724-Datasheet.ashx?la=en
+,,U5,LTV-847,Isolator:LTV-847,Package_DIP:DIP-16_W7.62mm,http://optoelectronics.liteon.com/upload/download/DS-70-96-0016/LTV-8X7%20series.PDF
+,,,,,,
+,,,,,,
+,,,,,,
+Collated Components:,,,,,,
+,,,,,,
+Item,Qty,Reference(s),Value,LibPart,Footprint,Datasheet
+1,1,A1,Arduino_Nano_v3.x,MCU_Module:Arduino_Nano_v3.x,Module:Arduino_Nano,http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf
+2,5,"C1, C6, C7, C9, C10",0.1uF,Device:C_Small,Capacitor_THT:C_Disc_D7.0mm_W2.5mm_P5.00mm,~
+3,2,"C2, C3",22uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D5.0mm_P2.50mm,~
+4,2,"C4, C8",470uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D10.0mm_P5.00mm,~
+5,1,C5,47uF,Device:C_Polarized_Small,Capacitor_THT:CP_Radial_D5.0mm_P2.50mm,~
+6,8,"D1, D2, D3, D4, D6, D7, D8, D9",1N4007,Diode:1N4007,Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal,http://www.vishay.com/docs/88503/1n4001.pdf
+7,1,D5,LED,Device:LED,LED_THT:LED_D2.0mm_W4.0mm_H2.8mm_FlatTop,~
+8,4,"D10, D11, D12, D13",18v,Device:D_Zener,,~
+9,1,F1,Fuse Keystone 3568,Device:Fuse,Fuse:Fuseholder_Blade_Mini_Keystone_3568,~
+10,1,J1,Switches,Connector:Screw_Terminal_01x04,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal",~
+11,1,J2,Screw_Terminal_01x04,Connector:Screw_Terminal_01x04,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal",~
+12,1,J3,Motor,Connector:Screw_Terminal_01x04,"TerminalBlock_Phoenix:TerminalBlock_Phoenix_MKDS-1,5-4-5.08_1x04_P5.08mm_Horizontal",~
+13,4,"Q1, Q2, Q3, Q4",IRF3205,Transistor_FET:IRF3205,Package_TO_SOT_THT:TO-220-3_Vertical,http://www.irf.com/product-info/datasheets/data/irf3205.pdf
+14,4,"R1, R3, R4, R5",10R,Device:R,,~
+15,1,R2,1k,Device:R,Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal,~
+16,4,"R6, R7, R8, R9",10k,Device:R,,~
+17,4,"R10, R11, R12, R13",1K,Device:R,,~
+18,2,"U1, U3",IR2184,Driver_FET:IR2184,,https://www.infineon.com/dgdl/ir2184.pdf?fileId=5546d462533600a4015355c955e616d4
+19,1,U2,5.0V Reg,Converter_DCDC:OKI-78SR-3.3_1.5-W36-C,Converter_DCDC:Converter_DCDC_Murata_OKI-78SR_Vertical,https://power.murata.com/data/power/oki-78sr.pdf
+20,1,U4,ACS724LLCTR-10AB-T,Sensor_Current:ACS724xLCTR-05AB,Package_SO:SOIC-8_3.9x4.9mm_P1.27mm,http://www.allegromicro.com/~/media/Files/Datasheets/ACS724-Datasheet.ashx?la=en
+21,1,U5,LTV-847,Isolator:LTV-847,Package_DIP:DIP-16_W7.62mm,http://optoelectronics.liteon.com/upload/download/DS-70-96-0016/LTV-8X7%20series.PDF
