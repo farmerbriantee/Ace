@@ -1,16 +1,18 @@
 {
   "board": {
-    "active_layer": 31,
+    "active_layer": 0,
     "active_layer_preset": "",
-    "auto_track_width": false,
-    "hidden_nets": [],
+    "auto_track_width": true,
+    "hidden_nets": [
+      "GND"
+    ],
     "high_contrast_mode": 0,
     "net_color_mode": 1,
     "opacity": {
       "pads": 1.0,
-      "tracks": 0.4300000071525574,
+      "tracks": 1.0,
       "vias": 1.0,
-      "zones": 1.0
+      "zones": 0.7200000286102295
     },
     "ratsnest_display_mode": 0,
     "selection_filter": {
@@ -64,11 +66,11 @@
       35,
       36
     ],
-    "visible_layers": "0031fff_80000001",
-    "zone_display_mode": 1
+    "visible_layers": "003f020_80000001",
+    "zone_display_mode": 0
   },
   "meta": {
-    "filename": "Nav.kicad_prl",
+    "filename": "DualWithIMU.kicad_prl",
     "version": 3
   },
   "project": {

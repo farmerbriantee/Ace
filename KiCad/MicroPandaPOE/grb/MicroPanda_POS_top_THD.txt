@@ -1,0 +1,59 @@
+### Module positions - created on 2023-03-06 05:55
+### Printed by pcb_positions plugin
+## Unit = mm, Angle = deg.
+## Pcb Height 100.050mm, Pcb Width 163.884mm [based on Edge bounding box]
+## Side : top
+## Board Aux Origin: 0.000mm ,0.000mm
+# Ref         Val                 Package                       PosX       PosY       Pin1_PosX  Pin1_PosY    Rot     Side      Type
+D2            1N5401              D_DO-201AD_P15.24mm_Horizon.. 145.3896   -119.7864  145.3896   -119.7864   -90.0    top       THD
+R1            1k                  R_Axial_DIN0207_L6.3mm_D2.5.. 105.6640   -94.9960   105.6640   -94.9960    -90.0    top       THD
+SW1           4 Pos DIP           SW_DIP_SPSTx04_Slide_9.78x1.. 174.9525   -116.5626  174.9525   -116.5626    90.0    top       THD
+C2            470uF               CP_Radial_D8.0mm_P5.00mm      166.9320   -125.6033  166.9320   -125.6033    90.0    top       THD
+C7            220uF               CP_Radial_D8.0mm_P3.50mm      128.8320   -110.7995  128.8320   -110.7995   -90.0    top       THD
+C13           1uF                 CP_Radial_D6.3mm_P2.50mm      212.0494   -92.9640   212.0494   -92.9640    180.0    top       THD
+U3            Teensy 4.1          Teensy41_BGT                  153.3525   -93.1101   124.1425   -100.7301     0.0    top       THD
+J13           POE V+              Pin_D1.3mm_L11.0mm_LooseFit   108.7120   -74.6760   108.7120   -74.6760      0.0    top       THD
+U1            3.3V Reg            Converter_DCDC_Murata_OKI-7.. 178.3420   -131.6061  178.3420   -131.6061     0.0    top       THD
+J2            B Micro USB         USB_Mini_B_AdamTech_musb_b5.. 199.5983   -54.7288   197.9983   -55.3288      0.0    top       THD
+J4            Chassis Gnd         Pin_D1.3mm_L11.0mm_LooseFit   153.7335   -64.2620   153.7335   -64.2620    180.0    top       THD
+J7            Tx3 Rx3             PinSocket_1x02_P2.54mm_Vert.. 115.8435   -86.8280   115.8435   -86.8280    180.0    top       THD
+J6            POE Jumper          PinSocket_1x02_P2.54mm_Vert.. 109.2200   -79.2230   109.2200   -79.2230     90.0    top       THD
+C14           0.1uF               C_Disc_D7.0mm_W2.5mm_P5.00mm  213.4000   -98.0440   213.4000   -98.0440      0.0    top       THD
+C11           0.1uF               C_Disc_D7.0mm_W2.5mm_P5.00mm  157.4400   -72.6440   157.4400   -72.6440    180.0    top       THD
+C15           0.1uF               C_Disc_D7.0mm_W2.5mm_P5.00mm  211.3280   -67.8180   211.3280   -67.8180    -90.0    top       THD
+C8            220uF               CP_Radial_D8.0mm_P3.50mm      118.6720   -110.9612  118.6720   -110.9612   -90.0    top       THD
+R3            1k                  R_Axial_DIN0207_L6.3mm_D2.5.. 216.9160   -138.4300  216.9160   -138.4300   180.0    top       THD
+D5            LED                 LED_D2.0mm_W4.0mm_H2.8mm_Fl.. 131.7875   -119.8880  131.7875   -119.8880   180.0    top       THD
+J11           5V                  PinSocket_1x02_P2.54mm_Vert.. 114.4905   -102.1080  114.4905   -102.1080     0.0    top       THD
+J12           POE V-              Pin_D1.3mm_L11.0mm_LooseFit   119.3800   -74.6760   119.3800   -74.6760      0.0    top       THD
+U2            5V Reg              Converter_DCDC_Murata_OKI-7.. 143.4420   -110.8901  143.4420   -110.8901   180.0    top       THD
+D8            LED                 LED_D2.0mm_W4.0mm_H2.8mm_Fl.. 218.6940   -133.3020  218.6940   -133.3020    90.0    top       THD
+C9            0.1uF               C_Disc_D7.0mm_W2.5mm_P5.00mm  149.9000   -60.0456   149.9000   -60.0456      0.0    top       THD
+C1            470uF               CP_Radial_D8.0mm_P5.00mm      166.9320   -130.3695  166.9320   -130.3695   -90.0    top       THD
+J8            3.3V                PinSocket_1x02_P2.54mm_Vert.. 214.3760   -131.3180  214.3760   -131.3180   180.0    top       THD
+U4            Ada BNO085          BNO085_Adafruit_4754          172.0120   -63.9001   0.0000     0.0000        0.0    top       THD
+U6            F9P Micro Right     MODULE_AS-RTK2B-MICRO-F9P-L.. 204.6592   -114.2265  211.1234   -103.2226   -90.0    top       THD
+J14           GND                 Pin_D1.3mm_L11.0mm_LooseFit   115.3160   -74.6760   115.3160   -74.6760      0.0    top       THD
+D3            1N5401              D_DO-201AD_P15.24mm_Horizon.. 154.2288   -119.7356  154.2288   -119.7356   -90.0    top       THD
+D6            LED                 LED_D2.0mm_W4.0mm_H2.8mm_Fl.. 198.5645   -137.9220  198.5645   -137.9220     0.0    top       THD
+D1            1N5401              D_DO-201AD_P15.24mm_Horizon.. 136.4520   -119.7801  136.4520   -119.7801   -90.0    top       THD
+C6            470uF               CP_Radial_D8.0mm_P5.00mm      152.9620   -109.3171  152.9620   -109.3171   -90.0    top       THD
+J1            RJ45 Abracon ARJP.. RJ45_Abracon_ARJP11A-MA_Hor.. 141.2875   -56.7740   141.2875   -56.7740    -90.0    top       THD
+J10           TxR RxL             PinSocket_1x02_P2.54mm_Vert.. 187.3885   -87.5030   187.3885   -87.5030    180.0    top       THD
+R2            1k                  R_Axial_DIN0207_L6.3mm_D2.5.. 116.5225   -119.8880  116.5225   -119.8880     0.0    top       THD
+C5            470uF               CP_Radial_D8.0mm_P5.00mm      164.3920   -109.3171  164.3920   -109.3171   -90.0    top       THD
+J3            B Micro USB         USB_Mini_B_AdamTech_musb_b5.. 199.2175   -94.8690   197.6175   -95.4690      0.0    top       THD
+C12           1uF                 CP_Radial_D6.3mm_P2.50mm      210.8200   -57.2488   210.8200   -57.2488     90.0    top       THD
+C3            220uF               CP_Radial_D8.0mm_P3.50mm      205.6670   -131.1681  205.6670   -131.1681   -90.0    top       THD
+U5            F9P Micro Left      MODULE_AS-RTK2B-MICRO-F9P-L.. 204.1703   -73.5113   210.6345   -62.5074    -90.0    top       THD
+D7            LED                 LED_D2.0mm_W4.0mm_H2.8mm_Fl.. 218.9480   -90.9520   218.9480   -90.9520     90.0    top       THD
+J9            5V                  PinSocket_1x02_P2.54mm_Vert.. 118.8335   -102.1280  118.8335   -102.1280     0.0    top       THD
+C4            220uF               CP_Radial_D8.0mm_P3.50mm      193.6020   -131.1682  193.6020   -131.1682   -90.0    top       THD
+C17           0.1uF               C_Disc_D7.0mm_W2.5mm_P5.00mm  149.8492   -55.6260   149.8492   -55.6260      0.0    top       THD
+R5            1k                  R_Axial_DIN0204_L3.6mm_D1.6.. 218.6940   -125.2720  218.6940   -125.2720   -90.0    top       THD
+F1            Keystone 3568       Fuseholder_Blade_Mini_Keyst.. 117.4020   -129.4511  117.4020   -132.8511     0.0    top       THD
+D4            LED                 LED_D2.0mm_W4.0mm_H2.8mm_Fl.. 105.6640   -110.6460  105.6640   -110.6460    90.0    top       THD
+J5            4x Terminal         TerminalBlock_Phoenix_MKDS-.. 106.2770   -133.2611  106.2770   -133.2611    90.0    top       THD
+C10           1uF                 CP_Radial_D6.3mm_P2.50mm      124.9680   -81.6163   124.9680   -81.6163     90.0    top       THD
+R4            1k                  R_Axial_DIN0204_L3.6mm_D1.6.. 218.9480   -82.7560   218.9480   -82.7560    -90.0    top       THD
+## End

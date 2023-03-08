@@ -1,5 +1,4 @@
-// Single antenna, IMU, & dual antenna code for AgOpenGPS
-// If dual right antenna is for position (must enter this location in AgOpen), left Antenna is for heading & roll
+// Single antenna, IMU, & WAS for AgOpenGPS
 //
 // connection plan:
 // Teensy Serial 7 RX (28) to F9P Position receiver TX1 (Position data)
