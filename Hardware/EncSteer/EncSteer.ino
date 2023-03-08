@@ -79,7 +79,6 @@
   
     // ethernet mac address - must be unique on your network - 126 = 7E
     static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,0x7E };
-
   
     uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
@@ -336,22 +335,6 @@
                   }
               }
           }
-
-
-        //Enable H Bridge for IBT2, hyd aux, etc for cytron freewheel mod
-        if (steerConfig.CytronDriver) 
-        {
-          if (steerConfig.IsRelayActiveHigh) 
-          {
-            digitalWrite(PWM2_RPWM, 0); 
-          }
-          else  
-          {
-            digitalWrite(PWM2_RPWM, 1);       
-          }        
-        }
-        else digitalWrite(DIR1_RL_ENABLE, 1);
-
       } //end of timed loop
 
 
@@ -492,6 +475,16 @@
 
               if (watchdogTimer < WATCHDOG_LIMIT)
               {
+                  //Enable hyd aux, etc for cytron freewheel mod
+                  if (steerConfig.IsRelayActiveHigh)
+                  {
+                      digitalWrite(PWM2_RPWM, 1);
+                  }
+                  else
+                  {
+                      digitalWrite(PWM2_RPWM, 0);
+                  }
+
                   steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
                   calcSteeringPID();  //do the pid
                   motorDrive();       //out to motors the pwm value
@@ -499,6 +492,16 @@
               else
               {
                   //we've lost the comm to AgOpenGPS, or just stop request
+                  //Enable hyd aux, etc for cytron freewheel mod
+                  if (steerConfig.IsRelayActiveHigh)
+                  {
+                      digitalWrite(PWM2_RPWM, 0);
+                  }
+                  else
+                  {
+                      digitalWrite(PWM2_RPWM, 1);
+                  }
+
                   pwmDrive = 0; //turn off steering motor
                   motorDrive(); //out to motors the pwm value
                   pulseCount = 0;

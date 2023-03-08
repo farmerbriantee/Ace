@@ -1,0 +1,80 @@
+Individual Components:,,,,
+,,,,
+Item,Qty,Reference(s),Value,LibPart
+,,A1,Arduino_Nano_v3.x,MCU_Module:Arduino_Nano_v3.x
+,,C1,0.1uF,Device:C_Small
+,,C2,22uF,Device:C_Polarized_Small
+,,C3,22uF,Device:C_Polarized_Small
+,,C4,470uF,Device:C_Polarized_Small
+,,C5,47uF,Device:C_Polarized_Small
+,,C6,0.1uF,Device:C_Small
+,,C7,0.1uF,Device:C_Small
+,,C8,470uF,Device:C_Polarized_Small
+,,C9,0.1uF,Device:C_Small
+,,C10,0.1uF,Device:C_Small
+,,D1,1N4007,Diode:1N4007
+,,D2,1N4007,Diode:1N4007
+,,D3,1N4007,Diode:1N4007
+,,D4,1N4007,Diode:1N4007
+,,D5,LED,Device:LED
+,,D6,1N4007,Diode:1N4007
+,,D7,1N4007,Diode:1N4007
+,,D8,1N4007,Diode:1N4007
+,,D9,1N4007,Diode:1N4007
+,,D10,18v,Device:D_Zener
+,,D11,18v,Device:D_Zener
+,,D12,18v,Device:D_Zener
+,,D13,18v,Device:D_Zener
+,,F1,Fuse Keystone 3568,Device:Fuse
+,,J1,Switches,Connector:Screw_Terminal_01x04
+,,J2,Screw_Terminal_01x04,Connector:Screw_Terminal_01x04
+,,J3,Motor,Connector:Screw_Terminal_01x04
+,,Q1,IRF3205,Transistor_FET:IRF3205
+,,Q2,IRF3205,Transistor_FET:IRF3205
+,,Q3,IRF3205,Transistor_FET:IRF3205
+,,Q4,IRF3205,Transistor_FET:IRF3205
+,,R1,10R,Device:R
+,,R2,1k,Device:R
+,,R3,10R,Device:R
+,,R4,10R,Device:R
+,,R5,10R,Device:R
+,,R6,10k,Device:R
+,,R7,10k,Device:R
+,,R8,10k,Device:R
+,,R9,10k,Device:R
+,,R10,1K,Device:R
+,,R11,1K,Device:R
+,,R12,1K,Device:R
+,,R13,1K,Device:R
+,,U1,IR2184,Driver_FET:IR2184
+,,U2,5.0V Reg,Converter_DCDC:OKI-78SR-3.3_1.5-W36-C
+,,U3,IR2184,Driver_FET:IR2184
+,,U4,ACS724LLCTR-10AB-T,Sensor_Current:ACS724xLCTR-05AB
+,,U5,LTV-847,Isolator:LTV-847
+,,,,
+,,,,
+,,,,
+Collated Components:,,,,
+,,,,
+Item,Qty,Reference(s),Value,LibPart
+1,1,A1,Arduino_Nano_v3.x,MCU_Module:Arduino_Nano_v3.x
+2,5,"C1, C6, C7, C9, C10",0.1uF,Device:C_Small
+3,2,"C2, C3",22uF,Device:C_Polarized_Small
+4,2,"C4, C8",470uF,Device:C_Polarized_Small
+5,1,C5,47uF,Device:C_Polarized_Small
+6,8,"D1, D2, D3, D4, D6, D7, D8, D9",1N4007,Diode:1N4007
+7,1,D5,LED,Device:LED
+8,4,"D10, D11, D12, D13",18v,Device:D_Zener
+9,1,F1,Fuse Keystone 3568,Device:Fuse
+10,1,J1,Switches,Connector:Screw_Terminal_01x04
+11,1,J2,Screw_Terminal_01x04,Connector:Screw_Terminal_01x04
+12,1,J3,Motor,Connector:Screw_Terminal_01x04
+13,4,"Q1, Q2, Q3, Q4",IRF3205,Transistor_FET:IRF3205
+14,4,"R1, R3, R4, R5",10R,Device:R
+15,1,R2,1k,Device:R
+16,4,"R6, R7, R8, R9",10k,Device:R
+17,4,"R10, R11, R12, R13",1K,Device:R
+18,2,"U1, U3",IR2184,Driver_FET:IR2184
+19,1,U2,5.0V Reg,Converter_DCDC:OKI-78SR-3.3_1.5-W36-C
+20,1,U4,ACS724LLCTR-10AB-T,Sensor_Current:ACS724xLCTR-05AB
+21,1,U5,LTV-847,Isolator:LTV-847
