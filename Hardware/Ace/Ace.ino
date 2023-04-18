@@ -84,7 +84,7 @@ void loop()
         SampleWAS();
     }
 
-    //wait 40 msec then update imu data for next PANDA sentence
+    //wait 40 msec then update imu data for next PANDA sentence, Ideal according to TH pole test.
     if (isGGA_Updated && imuDelayTimer > 40)
     {
         imuHandler();
