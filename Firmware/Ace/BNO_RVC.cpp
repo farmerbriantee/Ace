@@ -1,5 +1,4 @@
 #include "Arduino.h"
-#include <Wire.h>
 
 #include "BNO_RVC.h"
 
@@ -70,6 +69,8 @@ bool BNO_rvc::read(BNO_rvcData* bnoData)
 
 	temp = buffer[5] + (buffer[6] << 8);
 	bnoData->rollX10 = (int16_t)((float)temp * DEGREE_SCALE); //Confirmed X as stock direction of travel
+
+	bnoData->sequence = buffer[0];
 
 	return true;
 }

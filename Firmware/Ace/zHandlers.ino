@@ -63,6 +63,9 @@ void GGA_Handler() //Rec'd GGA
     //we have new GGA sentence
     isGGA_Updated = true;
 
+    // Fill rest of Panda Sentence - Heading
+    itoa(bnoData.yawX10, imuHeading, 10);
+
     //reset imu timer
     imuDelayTimer = 0;
 
@@ -88,9 +91,6 @@ void VTG_Handler()
 void imuHandler()
 {
     double angVel;
-
-    // Fill rest of Panda Sentence - Heading
-    itoa(bnoData.yawX10, imuHeading, 10);
 
     if (isSwapXY)
     {

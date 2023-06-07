@@ -164,6 +164,8 @@
 
     void setup()
     {
+        //delay(4000);
+
         //PWM rate settings
         if (PWM_Frequency == 1)
         {

@@ -91,7 +91,7 @@ void loop()
         isGGA_Updated = false;
     }
 
-    //read any NMEA sent via udp 5120
+    //read any NMEA sent via udp zzz
     udpNMEA();
 
     //check for AgIO Sending 8888 
