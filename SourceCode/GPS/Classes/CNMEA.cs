@@ -11,7 +11,7 @@ namespace AgOpenGPS
         public double prevLatitude, prevLongitude;
 
         //local plane geometry
-        public static double latStart, lonStart;
+        public double latStart, lonStart;
         public double mPerDegreeLat, mPerDegreeLon;
 
         //our current fix

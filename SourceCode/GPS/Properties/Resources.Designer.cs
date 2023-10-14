@@ -302,6 +302,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BackSpace {
+            get {
+                object obj = ResourceManager.GetObject("BackSpace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bing1 {
             get {
                 object obj = ResourceManager.GetObject("bing1", resourceCulture);
@@ -1562,6 +1572,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FileExisting {
+            get {
+                object obj = ResourceManager.GetObject("FileExisting", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FileExplorerWindows {
             get {
                 object obj = ResourceManager.GetObject("FileExplorerWindows", resourceCulture);
@@ -2362,6 +2382,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap SectionOffBoundary {
             get {
                 object obj = ResourceManager.GetObject("SectionOffBoundary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SectionOnBoundary {
+            get {
+                object obj = ResourceManager.GetObject("SectionOnBoundary", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

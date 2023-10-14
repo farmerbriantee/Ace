@@ -13,8 +13,8 @@ using System.Reflection;
 namespace AgOpenGPS
 {
     public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
-    public enum HBrand { AGOpenGPS, Case, Claas, JDeere, NewHolland }
-    public enum WDBrand { AGOpenGPS, Case, Challenger, JDeere, NewHolland }
+    public enum HBrand { AgOpenGPS, Case, Claas, JDeere, NewHolland }
+    public enum WDBrand { AgOpenGPS, Case, Challenger, JDeere, NewHolland }
 
     public partial class FormGPS
     {
@@ -67,8 +67,7 @@ namespace AgOpenGPS
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0;
 
-        //gps received counters
-        public uint sentenceCounter = 0, sentenceCounterTwo = 0;
+        public uint sentenceCounter = 0;
 
 
         //Timer triggers at 125 msec
@@ -80,8 +79,6 @@ namespace AgOpenGPS
                 ShowNoGPSWarning();
                 return;
             }
-
-            sentenceCounterTwo++;
 
             if (threeSecondCounter++ >= 12)
             {
@@ -297,8 +294,8 @@ namespace AgOpenGPS
                     //btnContour.Text = InchXTE; //cross track error
                 }
 
-                lblAV.Text = setAngVel.ToString("N1");
-
+                lblAV_Act.Text = actAngVel.ToString("N1");
+                lblAV_Set.Text = setAngVel.ToString("N1");
 
             } //end every 1/2 second
 
@@ -388,7 +385,6 @@ namespace AgOpenGPS
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
             startSpeed = Settings.Default.setVehicle_startSpeed;
-            gpsMinimumStepDistance = Settings.Default.setGPS_minimumStepLimit;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();
@@ -578,12 +574,8 @@ namespace AgOpenGPS
             mc.isSteerWorkSwitchEnabled = Settings.Default.setF_isSteerWorkSwitchEnabled;
             mc.isSteerWorkSwitchManualSections = Settings.Default.setF_isSteerWorkSwitchManualSections;
 
-            //if (Properties.Settings.Default.setF_minFixStep < 0.6)
-            //{
-            //    Properties.Settings.Default.setF_minFixStep = 0.6;
-            //    Properties.Settings.Default.Save();
-            //}
-            minFixStepDist = Settings.Default.setF_minFixStep;
+            minHeadingStepDist = Settings.Default.setF_minHeadingStepDistance;
+            gpsMinimumStepDistance = Settings.Default.setGPS_minimumStepLimit;
 
             fd.workedAreaTotalUser = Settings.Default.setF_UserTotalArea;
 
@@ -1068,10 +1060,17 @@ namespace AgOpenGPS
 
             else if (oglZoom.Width == 300)
             {
+                oglZoom.Top = 55;
+                oglZoom.Left = 3;
+                oglZoom.Width = this.Width-6;
+                oglZoom.Height = this.Height-61;
+            }
+            else if (oglZoom.Width > 300)
+            {
                 oglZoom.Width = 180;
                 oglZoom.Height = 180;
             }
-        }         
+        }
         public void SwapDirection()
         {
             if (!yt.isYouTurnTriggered)
@@ -1177,14 +1176,20 @@ namespace AgOpenGPS
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed*0.62137, 2));
+                if (avgSpeed > 2)
+                    return (avgSpeed * 0.62137).ToString("N1");
+                else
+                    return(avgSpeed * 0.62137).ToString("N2");
             }
         }
         public string SpeedKPH
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed, 2));
+                if (avgSpeed > 2)
+                    return (avgSpeed).ToString("N1");
+                else
+                    return (avgSpeed).ToString("N2");
             }
         }
 

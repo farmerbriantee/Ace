@@ -61,6 +61,8 @@ namespace AgOpenGPS
                 steerangleAve = steerAngle;
             }
 
+            mf.mc.actualSteerAngleDegrees = steerangleAve;
+
             double temp = stepDistance * Math.Tan(steerangleAve * 0.0165329252) / 3.3;
             headingTrue += temp;
             if (headingTrue > glm.twoPI) headingTrue -= glm.twoPI;
@@ -76,6 +78,7 @@ namespace AgOpenGPS
 
             mf.pn.headingTrue = mf.pn.headingTrueDual = glm.toDegrees(headingTrue);
             mf.ahrs.imuHeading = mf.pn.headingTrue;
+            if (mf.ahrs.imuHeading > 360) mf.ahrs.imuHeading -= 360;
 
             mf.pn.latitude = latitude;
             mf.pn.longitude = longitude;

@@ -143,7 +143,7 @@ namespace AgOpenGPS
         public CNMEA pn;
 
         /// <summary>
-        /// The NMEA class that decodes it
+        /// The NMEA class for second gps that decodes it
         /// </summary>
         public CNMEA pnTwo;
 
@@ -298,8 +298,6 @@ namespace AgOpenGPS
 
             //our NMEA parser
             pn = new CNMEA(this);
-
-            //our NMEA parser
             pnTwo = new CNMEA(this);
 
             //create the ABLine instance
@@ -444,7 +442,15 @@ namespace AgOpenGPS
 
                 //display brightness
                 if (displayBrightness.isWmiMonitor)
+                {
+                    if (Settings.Default.setDisplay_brightness < Settings.Default.setDisplay_brightnessSystem)
+                    {
+                        Settings.Default.setDisplay_brightness = Settings.Default.setDisplay_brightnessSystem;
+                        Settings.Default.Save();
+                    }
+
                     displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
+                }
                 else
                 {
                     btnBrightnessDn.Enabled = false;
@@ -498,6 +504,32 @@ namespace AgOpenGPS
                 }
             }
 
+            if (Properties.Settings.Default.setDisplay_isAutoStartAgIO)
+            {
+                //Start AgTwo process
+                Process[] processName = Process.GetProcessesByName("AgTwo");
+                if (processName.Length == 0)
+                {
+                    //Start application here
+                    DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+                    string strPath = di.ToString();
+                    strPath += "\\AgTwo.exe";
+                    try
+                    {
+                        ProcessStartInfo processInfo = new ProcessStartInfo
+                        {
+                            FileName = strPath,
+                            WorkingDirectory = Path.GetDirectoryName(strPath)
+                        };
+                        Process proc = Process.Start(processInfo);
+                    }
+                    catch
+                    {
+                        TimedMessageBox(2000, "No File Found", "Can't Find AgTwo");
+                    }
+                }
+            }
+
             //nmea limiter
             udpWatch.Start();
 
@@ -519,7 +551,7 @@ namespace AgOpenGPS
 
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
 
-            steerChartStripMenu.Text = gStr.gsSteerChart;
+            steerChartStripMenu.Text = gStr.gsCharts;
 
             //Tools Menu
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
@@ -528,8 +560,18 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
             deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
+            toolStripMenuItem9.Text = gStr.gsField;
+            tramLinesMenuField.Text = gStr.gsTramLines;
+            toolStripBtnMakeBndContour.Text = gStr.gsBoundaryMenu;
+            recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
+
             webcamToolStrip.Text = gStr.gsWebCam;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
+            wizardsMenu.Text = gStr.gsWizards;
+            steerWizardMenuItem.Text = gStr.gsSteerWizard;
+            steerChartToolStripMenuItem.Text = gStr.gsSteerChart;
+            headingChartToolStripMenuItem.Text = gStr.gsHeadingChart;
+            xTEChartToolStripMenuItem.Text = gStr.gsXTEChart;
 
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
             //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
@@ -588,6 +630,7 @@ namespace AgOpenGPS
             }
 
             SaveFormGPSWindowSettings();
+            FileUpdateAllFieldsKML();
 
             if (loopBackSocket != null)
             {
@@ -695,7 +738,6 @@ namespace AgOpenGPS
 
                 if (result == DialogResult.OK) return 0;      //Save and Exit
                 if (result == DialogResult.Ignore) return 1;   //Ignore
-                if (result == DialogResult.Yes) return 2;      //Save As
                 return 3;  // oops something is really busted
             }
         }

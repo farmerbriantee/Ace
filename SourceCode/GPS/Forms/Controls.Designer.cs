@@ -923,7 +923,21 @@ namespace AgOpenGPS
         private void menuLanguageTurkish_Click(object sender, EventArgs e)
         {
             SetLanguage("tr", true);
+        }          
+        private void finnishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("fi", true);
         }
+        private void latvianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("lv", true);
+        }
+        private void lithuanianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("lt", true);
+        }
+
+
         private void SetLanguage(string lang, bool Restart)
         {
             if (Restart && isJobStarted)
@@ -947,6 +961,9 @@ namespace AgOpenGPS
             menuLanguageDanish.Checked = false;
             menuLanguageTurkish.Checked = false;
             menuLanguageHungarian.Checked = false;
+            menuLanguageLithuanian.Checked = false;
+            menuLanguageFinnish.Checked = false;
+            menuLanguageLatvian.Checked = false;
 
             menuLanguageTest.Checked = false;
 
@@ -1006,6 +1023,18 @@ namespace AgOpenGPS
 
                 case "hu":
                     menuLanguageHungarian.Checked = true;
+                    break;
+
+                case "lt":
+                    menuLanguageLithuanian.Checked = true;
+                    break;
+
+                case "lv":
+                    menuLanguageLatvian.Checked = true;
+                    break;
+
+                case "fi":
+                    menuLanguageFinnish.Checked = true;
                     break;
 
                 default:
@@ -1796,6 +1825,23 @@ namespace AgOpenGPS
                         using (var form2 = new FormFieldKML(this))
                         { form2.ShowDialog(this); }
                     }
+
+                    //load from Existing
+                    else if (result == DialogResult.Retry)
+                    {
+                        //ask for a field to copy
+                        using (var form2 = new FormFieldExisting(this))
+                        { form2.ShowDialog(this); }
+                    }
+
+                    if (isJobStarted)
+                    {
+                        double distance = Math.Pow((pn.latStart - pn.latitude), 2) + Math.Pow((pn.lonStart - pn.longitude), 2);
+                        distance = Math.Sqrt(distance);
+                        distance *= 100;
+                        if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
+                            + distance.ToString("N1") + " km From current position");
+                    }
                 }
 
                 if (isJobStarted)
@@ -1854,23 +1900,6 @@ namespace AgOpenGPS
                     case 1:
                         break;
 
-                    //Save As
-                    case 2:
-                        //close current field but remember last used like normal
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                        Settings.Default.Save();
-                        FileSaveEverythingBeforeClosingField();
-                        panelRight.Enabled = false;
-                        //boundaryToolStripBtn.Enabled = false;
-                        FieldMenuButtonEnableDisable(false);
-
-                        //ask for a directory name
-                        using (var form2 = new FormSaveAs(this))
-                        {
-                            form2.ShowDialog(this);
-                        }
-
-                        break;
                 }
             }
             //update GUI areas
