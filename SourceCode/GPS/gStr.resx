@@ -285,6 +285,9 @@
   <data name="gsHelp" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Wrong Direction? Tap Vehicle</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Inch</value>
   </data>
@@ -438,6 +441,9 @@
   <data name="gsSimulatorOn" xml:space="preserve">
     <value>Simulator On</value>
   </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Slow Down Below</value>
+  </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>Smooth AB Curve</value>
   </data>
@@ -464,6 +470,9 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>To File</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Too Fast</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Top Field View</value>
@@ -1147,6 +1156,9 @@ The button setting is more common for hydraulic as you want pressure to disable 
     <value>Tram Tool Control
 
 Enable sending tram on off signal to seed runs for full tram control. </value>
+  </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value>Select IMU orientation axis so when the vehicle rolls to the side, the roll value changes. </value>
   </data>
   <data name="hc_chkDisplayDayNight" xml:space="preserve">
     <value>Auto Day Night automatically goes to night mode at sunset and day mode at sunrise</value>

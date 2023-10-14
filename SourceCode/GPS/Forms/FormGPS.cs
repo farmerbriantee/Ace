@@ -118,7 +118,8 @@ namespace AgOpenGPS
         //used by filePicker Form to return picked file and directory
         public string filePickerFileAndDirectory;
 
-        //private int fiveSecondCounter = 0, fiveSeconds = 0;
+        //the position of the GPS Data window within the FormGPS window
+        public int GPSDataWindowLeft = 76, GPSDataWindowTopOffset = 160;
 
         //the autoManual drive button. Assume in Auto
         public bool isInAutoDrive = true;
@@ -140,6 +141,11 @@ namespace AgOpenGPS
         /// The NMEA class that decodes it
         /// </summary>
         public CNMEA pn;
+
+        /// <summary>
+        /// The NMEA class that decodes it
+        /// </summary>
+        public CNMEA pnTwo;
 
         /// <summary>
         /// an array of sections
@@ -211,6 +217,11 @@ namespace AgOpenGPS
         /// Heading, Roll, Pitch, GPS, Properties
         /// </summary>
         public CAHRS ahrs;
+
+        /// <summary>
+        /// Heading, Roll, Pitch, GPS, Properties
+        /// </summary>
+        public CAHRS ahrsTwo;
 
         /// <summary>
         /// Recorded Path
@@ -288,6 +299,9 @@ namespace AgOpenGPS
             //our NMEA parser
             pn = new CNMEA(this);
 
+            //our NMEA parser
+            pnTwo = new CNMEA(this);
+
             //create the ABLine instance
             ABLine = new CABLine(this);
 
@@ -311,6 +325,9 @@ namespace AgOpenGPS
 
             ////all the attitude, heading, roll, pitch reference system
             ahrs = new CAHRS();
+
+            ////all the attitude, heading, roll, pitch reference system
+            ahrsTwo = new CAHRS();
 
             //A recorded path
             recPath = new CRecordedPath(this);
@@ -412,11 +429,29 @@ namespace AgOpenGPS
                 }
             }
 
-            if (displayBrightness.isWmiMonitor)
+            if (isBrightnessOn)
             {
-                Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
-                Settings.Default.Save();
+                if (displayBrightness.isWmiMonitor)
+                {
+                    Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
+                    Settings.Default.Save();
+                }
+                else
+                {
+                    btnBrightnessDn.Enabled = false;
+                    btnBrightnessUp.Enabled = false;
+                }
+
+                //display brightness
+                if (displayBrightness.isWmiMonitor)
+                    displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
+                else
+                {
+                    btnBrightnessDn.Enabled = false;
+                    btnBrightnessUp.Enabled = false;
+                }
             }
+
 
 
             // load all the gui elements in gui.designer.cs
@@ -577,6 +612,34 @@ namespace AgOpenGPS
         {
             FixPanelsAndMenus();
             if (isGPSPositionInitialized) SetZoom();
+
+            Form f = Application.OpenForms["FormGPSData"];
+            if (f != null)
+            {
+                f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f.Left = this.Left + GPSDataWindowLeft;
+            }
+            Form f1 = Application.OpenForms["FormFieldData"];
+            if (f1 != null)
+            {
+                f1.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f1.Left = this.Left + GPSDataWindowLeft;
+            }
+        }
+        private void FormGPS_Move(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+            if (f != null)
+            {
+                f.Top = this.Top + this.Height/2 - GPSDataWindowTopOffset;
+                f.Left = this.Left + GPSDataWindowLeft;
+            }
+            Form f1 = Application.OpenForms["FormFieldData"];
+            if (f1 != null)
+            {
+                f1.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f1.Left = this.Left + GPSDataWindowLeft;
+            }
         }
 
         // Load Bitmaps And Convert To Textures
@@ -1022,6 +1085,7 @@ namespace AgOpenGPS
             btnSnapToPivot.Visible = false;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
+            btnEditAB.Visible = false;
         }
 
         //take the distance from object and convert to camera data

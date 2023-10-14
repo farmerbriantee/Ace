@@ -201,13 +201,13 @@ namespace AgOpenGPS
             }
 
             //new direction so reset where to put turn diagnostic
-            yt.ResetCreatedYouTurn();
+            //yt.ResetCreatedYouTurn();
 
             if (isAutoSteerBtnOn)
             {
                 isAutoSteerBtnOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
-                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
             }
             else
@@ -249,7 +249,7 @@ namespace AgOpenGPS
 
                 if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
                 {
-                    if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                    //if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
                 }
                 else return;
 
@@ -263,8 +263,8 @@ namespace AgOpenGPS
             else
             {
                 yt.isYouTurnBtnOn = false;
-                yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-                yt.Set_Alternate_skips();
+                //yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
+                //yt.Set_Alternate_skips();
 
                 btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 yt.ResetYouTurn();
@@ -300,6 +300,8 @@ namespace AgOpenGPS
                 //reset to generate new reference
             ABLine.isABValid = false;
             curve.isCurveValid = false;
+
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
 
             if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
             {
@@ -400,6 +402,21 @@ namespace AgOpenGPS
         private void navPanelToolStrip_Click(object sender, EventArgs e)
         {
             //buttonPanelCounter = 0;
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            Form f1 = Application.OpenForms["FormFieldData"];
+
+            if (f1 != null)
+            {
+                f1.Focus();
+                f1.Close();
+            }
 
             if (panelNavigation.Visible)
             {
@@ -531,6 +548,8 @@ namespace AgOpenGPS
 
             //
             Form form = new FormSteer(this);
+            form.Top = 0;
+            form.Left = 0;
             form.Show(this);
 
         }
@@ -547,32 +566,41 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
-        private void btnStanleyPure_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnStanleyPure, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
-            isStanleyUsed = !isStanleyUsed;
-
-            if (isStanleyUsed)
-            {
-                btnStanleyPure.Image = Resources.ModeStanley;
-            }
-            else
-            {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
-            }
-
-            Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
-            Properties.Settings.Default.Save();
-        }
         #endregion
 
         #region Top Panel
+        private void lblFieldStatus_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            Form fff = Application.OpenForms["FormFieldData"];
+
+            if (fff != null)
+            {
+                fff.Focus();
+                fff.Close();
+                return;
+            }
+
+
+            Form form = new FormFieldData(this);
+            form.Show(this);
+
+            form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+            form.Left = this.Left + GPSDataWindowLeft;
+
+            Form ff = Application.OpenForms["FormGPS"];
+            ff.Focus();
+
+
+        }
+
         private void lblSpeed_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -591,11 +619,26 @@ namespace AgOpenGPS
                 return;
             }
 
-            isGPSSentencesOn = true;
+            Form f1 = Application.OpenForms["FormFieldData"];
+
+            if (f1 != null)
+            {
+                f1.Focus();
+                f1.Close();
+            }
+
+
+
+            //isGPSSentencesOn = true;
 
             Form form = new FormGPSData(this);
             form.Show(this);
 
+            form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+            form.Left = this.Left + GPSDataWindowLeft;
+
+            Form ff = Application.OpenForms["FormGPS"];
+            ff.Focus();
         }
         private void btnShutdown_Click(object sender, EventArgs e)
         {
@@ -857,6 +900,10 @@ namespace AgOpenGPS
         {
             SetLanguage("it", true);
         }
+        private void menuLanguageHungarian_Click(object sender, EventArgs e)
+        {
+            SetLanguage("hu", true);
+        }
         private void menuLanguageUkranian_Click(object sender, EventArgs e)
         {
             SetLanguage("uk", true);
@@ -877,11 +924,6 @@ namespace AgOpenGPS
         {
             SetLanguage("tr", true);
         }
-        private void menuLanguageHungarian_Click(object sender, EventArgs e)
-        {
-            SetLanguage("hu", true);
-        }
-
         private void SetLanguage(string lang, bool Restart)
         {
             if (Restart && isJobStarted)
@@ -2155,6 +2197,19 @@ namespace AgOpenGPS
             sim.stepDistance = 0;
             hsbarStepDistance.Value = 0;
         }
+
+        private void btnSimReverse_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            sim.isAccelBack = true;
+        }
+
+        private void btnSimForward_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            sim.isAccelForward = true;
+        }
+
         #endregion
 
 

@@ -41,8 +41,8 @@ namespace AgOpenGPS
             }
 
             {
-                mf.pn.latStart = (double)nudLatitude.Value;
-                mf.pn.lonStart = (double)nudLongitude.Value;
+                CNMEA.latStart = (double)nudLatitude.Value;
+                CNMEA.lonStart = (double)nudLongitude.Value;
 
                 mf.pn.latitude = (double)nudLatitude.Value;
                 mf.pn.longitude = (double)nudLongitude.Value;

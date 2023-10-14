@@ -722,6 +722,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap con_VehicleFunctionSpeedLimit {
+            get {
+                object obj = ResourceManager.GetObject("con_VehicleFunctionSpeedLimit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Con_VehicleMenu {
             get {
                 object obj = ResourceManager.GetObject("Con_VehicleMenu", resourceCulture);
@@ -1385,6 +1395,46 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ConV_LineWith {
             get {
                 object obj = ResourceManager.GetObject("ConV_LineWith", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConV_MaxAngVel {
+            get {
+                object obj = ResourceManager.GetObject("ConV_MaxAngVel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConV_MaxAutoSteer {
+            get {
+                object obj = ResourceManager.GetObject("ConV_MaxAutoSteer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConV_MinAutoSteer {
+            get {
+                object obj = ResourceManager.GetObject("ConV_MinAutoSteer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConV_RevSteer {
+            get {
+                object obj = ResourceManager.GetObject("ConV_RevSteer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2309,6 +2359,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SectionOffBoundary {
+            get {
+                object obj = ResourceManager.GetObject("SectionOffBoundary", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SectionsExample {
             get {
                 object obj = ResourceManager.GetObject("SectionsExample", resourceCulture);
@@ -2737,6 +2797,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap tractor_raise {
+            get {
+                object obj = ResourceManager.GetObject("tractor-raise", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TramAll {
             get {
                 object obj = ResourceManager.GetObject("TramAll", resourceCulture);
@@ -3070,6 +3140,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap Youturn80 {
             get {
                 object obj = ResourceManager.GetObject("Youturn80", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap YouTurnH {
+            get {
+                object obj = ResourceManager.GetObject("YouTurnH", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

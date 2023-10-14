@@ -8,6 +8,7 @@ using AgOpenGPS.Properties;
 using System.Globalization;
 using System.IO;
 using System.Media;
+using System.Reflection;
 
 namespace AgOpenGPS
 {
@@ -66,7 +67,8 @@ namespace AgOpenGPS
         //makes nav panel disappear after 6 seconds
         private int navPanelCounter = 0;
 
-        public uint sentenceCounter = 0;
+        //gps received counters
+        public uint sentenceCounter = 0, sentenceCounterTwo = 0;
 
 
         //Timer triggers at 125 msec
@@ -78,6 +80,8 @@ namespace AgOpenGPS
                 ShowNoGPSWarning();
                 return;
             }
+
+            sentenceCounterTwo++;
 
             if (threeSecondCounter++ >= 12)
             {
@@ -110,48 +114,41 @@ namespace AgOpenGPS
                 //check to make sure the grid is big enough
                 //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
 
-                if (panelNavigation.Visible)
-                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
-
-                if (isMetric)
-                {
-                    //fieldStatusStripText.Text = fd.WorkedAreaRemainHectares + "\r\n"+
-                    //                               fd.WorkedAreaRemainPercentage +"\r\n" +
-                    //                               fd.TimeTillFinished + "\r\n" +
-                    //                               fd.WorkRateHectares;
-                    if (bnd.bndList.Count > 0)
-                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   " +
-                                              fd.WorkedAreaRemainHectares  + "   " + 
-                                              fd.WorkedAreaRemainPercentage+"    " +
-                                              fd.WorkedHectares ;
-                    else
-                        lblFieldStatus.Text = fd.WorkedHectares;
-
-                }
-                else //imperial
-                {
-                    if (bnd.bndList.Count > 0)
-                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + 
-                                                fd.WorkedAreaRemainAcres + "   " + 
-                                                fd.WorkedAreaRemainPercentage + "   " +
-                                                fd.WorkedAcres;
-                    else
-                        lblFieldStatus.Text = fd.WorkedAcres;
-                }
-
                 //hide the NAv panel in 6  secs
                 if (panelNavigation.Visible)
                 {
-                    if (navPanelCounter-- < 1) panelNavigation.Visible = false;
+                    if (navPanelCounter-- < 2) panelNavigation.Visible = false;
                 }
 
-
-                //lblTopData.Text = (tool.toolWidth * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
-                lblFix.Text = FixQuality;
-                lblAge.Text = pn.age.ToString("N1");
+                if (panelNavigation.Visible)
+                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
+ 
+                lblFix.Text = FixQuality + pn.age.ToString("N1");
 
                 if (isJobStarted)
                 {
+                    if (isMetric)
+                    {
+                        if (bnd.bndList.Count > 0)
+                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   "
+                                + fd.WorkedHectares + "    "
+                                + fd.TimeTillFinished + "   "
+                                + fd.WorkRateHectares;
+                        else
+                            lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
+
+                    }
+                    else //imperial
+                    {
+                        if (bnd.bndList.Count > 0)
+                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   "
+                                + fd.WorkedAcres + "    "
+                                + fd.TimeTillFinished + "   "
+                                + fd.WorkRateAcres;
+                        else
+                            lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
+                    }
+
                     lblCurrentField.Text = "Field: " + displayFieldName;
 
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
@@ -167,8 +164,10 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    lblCurveLineName.Text = lblCurrentField.Text = string.Empty;
+                    lblCurveLineName.Text = lblFieldStatus.Text = string.Empty;
+                    lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 }
+
 
                 if (isJobStarted)
                 {
@@ -195,8 +194,6 @@ namespace AgOpenGPS
                         }
                     }
                 }
-
-                lbludpWatchCounts.Text = udpWatchCounts.ToString();
 
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
@@ -246,20 +243,6 @@ namespace AgOpenGPS
                     btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
                 }
 
-                //the main formgps window
-                if (isMetric)  //metric or imperial
-                {
-                    //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
-
-                }
-                else  //Imperial Measurements
-                {
-                    //acres on the master section soft control and sections
-                    //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
-                }
-
                 //statusbar flash red undefined headland
                 if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
                     || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
@@ -283,30 +266,19 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
-                //lblRad.Text = vehicle.goalDistance.ToString("N1");
+                //the main formgps window
+                if (isMetric)  //metric or imperial
+                {
+                    //status strip values
+                    distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
 
-                //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
-                //if (isJobStarted && ahrs.isAutoSteerAuto &&
-                //    (ABLine.isBtnABLineOn || ct.isContourBtnOn || curve.isBtnCurveOn))
-                //{
-                //    if (mc.steerSwitchValue == 0)
-                //    {
-                //        if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                //    }
-                //    else
-                //    {
-                //        if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                //    }
-                //}
-                //// Extension added 29.12.2021 (Othmar Ehrhardt):
-                //// If no AB line or path is activated, the work switch has no function and can be used to
-                //// control the play button of the Record path feature:
-                //else if(panelDrag.Visible && ahrs.isAutoSteerAuto)
-                //{
-                //    // No AB line activated, the autosteer button can be used to control the play button:
-                //    if (isAutoSteerBtnOn && !recPath.isDrivingRecordedPath) btnPathGoStop.PerformClick();
-                //    else if(recPath.isDrivingRecordedPath) btnPathGoStop.PerformClick();
-                //}
+                }
+                else  //Imperial Measurements
+                {
+                    //acres on the master section soft control and sections
+                    //status strip values
+                    distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
+                }
 
                 //Make sure it is off when it should
                 if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
@@ -324,6 +296,8 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedMPH;
                     //btnContour.Text = InchXTE; //cross track error
                 }
+
+                lblAV.Text = setAngVel.ToString("N1");
 
 
             } //end every 1/2 second
@@ -361,7 +335,7 @@ namespace AgOpenGPS
             headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
 
             boundariesToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
-            //toolStripBtnMakeBndContour.Visible = Properties.Settings.Default.setFeatures.isBndContourOn;
+            toolStripBtnMakeBndContour.Visible = Properties.Settings.Default.setFeatures.isBndContourOn;
             recordedPathStripMenu.Visible = Properties.Settings.Default.setFeatures.isRecPathOn;
             SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
@@ -369,7 +343,6 @@ namespace AgOpenGPS
             offsetFixToolStrip.Visible = Properties.Settings.Default.setFeatures.isOffsetFixOn;
             btnContour.Visible = Properties.Settings.Default.setFeatures.isContourOn;
             btnAutoYouTurn.Visible = Properties.Settings.Default.setFeatures.isYouTurnOn;
-            btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
             btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
 
             btnAutoSteer.Visible = Properties.Settings.Default.setFeatures.isAutoSteerOn;
@@ -414,12 +387,8 @@ namespace AgOpenGPS
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
-            if (Properties.Settings.Default.setVehicle_startSpeed < 1.0)
-            {
-                Properties.Settings.Default.setVehicle_startSpeed = 1.0;
-                Properties.Settings.Default.Save();
-            }
             startSpeed = Settings.Default.setVehicle_startSpeed;
+            gpsMinimumStepDistance = Settings.Default.setGPS_minimumStepLimit;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();
@@ -539,6 +508,7 @@ namespace AgOpenGPS
             pn.ageAlarm = Properties.Settings.Default.setGPS_ageAlarm;
 
             isConstantContourOn = Properties.Settings.Default.setAS_isConstantContourOn;
+            isSteerInReverse = Properties.Settings.Default.setAS_isSteerInReverse;
 
             guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
@@ -589,9 +559,9 @@ namespace AgOpenGPS
                 LineUpAllZoneButtons();
             }
 
-            yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
-            yt.Set_Alternate_skips();
+            //yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
+            //cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+            //yt.Set_Alternate_skips();
 
             DisableYouTurnButtons();
 
@@ -608,11 +578,11 @@ namespace AgOpenGPS
             mc.isSteerWorkSwitchEnabled = Settings.Default.setF_isSteerWorkSwitchEnabled;
             mc.isSteerWorkSwitchManualSections = Settings.Default.setF_isSteerWorkSwitchManualSections;
 
-            if (Properties.Settings.Default.setF_minFixStep < 0.6)
-            {
-                Properties.Settings.Default.setF_minFixStep = 0.6;
-                Properties.Settings.Default.Save();
-            }
+            //if (Properties.Settings.Default.setF_minFixStep < 0.6)
+            //{
+            //    Properties.Settings.Default.setF_minFixStep = 0.6;
+            //    Properties.Settings.Default.Save();
+            //}
             minFixStepDist = Settings.Default.setF_minFixStep;
 
             fd.workedAreaTotalUser = Settings.Default.setF_UserTotalArea;
@@ -625,16 +595,7 @@ namespace AgOpenGPS
             //load the lightbar resolution
             lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
 
-            //Stanley guidance
             isStanleyUsed = Properties.Settings.Default.setVehicle_isStanleyUsed;
-            if (isStanleyUsed)
-            {
-                btnStanleyPure.Image = Resources.ModeStanley;
-            }
-            else
-            {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
-            }
 
             //main window first
             if (Settings.Default.setWindow_Maximized)
@@ -673,18 +634,12 @@ namespace AgOpenGPS
                 }
             }
 
+            //load uturn properties
+            yt = new CYouTurn(this);
+
             FixPanelsAndMenus();
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
-
-            //display brightness
-            if (displayBrightness.isWmiMonitor) 
-                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
-            else
-            {
-                btnBrightnessDn.Enabled = false;    
-                btnBrightnessUp.Enabled = false;
-            }
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -882,6 +837,7 @@ namespace AgOpenGPS
         //Mouse Clicks 
         private void oglMain_MouseDown(object sender, MouseEventArgs e)
         {
+
             if (e.Button == MouseButtons.Left)
             {
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
@@ -914,14 +870,23 @@ namespace AgOpenGPS
                             return;
                         }
 
+                        
+
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
                         }
                         else
                         {
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(false, true);
+                            if (vehicle.functionSpeedLimit > avgSpeed)
+                            {
+                                yt.isYouTurnTriggered = true;
+                                yt.BuildManualYouTurn(false, true);
+                            }
+                            else
+                            {
+                                SpeedLimitExceeded();
+                            }
                             return;
                         }
                     }
@@ -941,8 +906,16 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(true, true);
+                            if (vehicle.functionSpeedLimit > avgSpeed)
+                            {
+                                yt.isYouTurnTriggered = true;
+                                yt.BuildManualYouTurn(true, true);
+                            }
+                            else
+                            {
+                                SpeedLimitExceeded();
+                            }
+
                             return;
                         }
                     }
@@ -960,7 +933,15 @@ namespace AgOpenGPS
                             return;
                         }
 
-                        yt.BuildManualYouLateral(false);
+                        if (vehicle.functionSpeedLimit > avgSpeed)
+                        {
+                            yt.BuildManualYouLateral(false);
+                        }
+                        else
+                        {
+                            SpeedLimitExceeded();
+                        }
+
                         return;
                     }
 
@@ -973,7 +954,15 @@ namespace AgOpenGPS
                             return;
                         }
 
-                        yt.BuildManualYouLateral(true);
+                        if (vehicle.functionSpeedLimit > avgSpeed)
+                        {
+                            yt.BuildManualYouLateral(true);
+                        }
+                        else
+                        {
+                            SpeedLimitExceeded();
+                        }
+
                         return;
                     }
                 }
@@ -1010,7 +999,7 @@ namespace AgOpenGPS
                 if (point.X > oglMain.Width - 80)
                 {
                     //---
-                    if (point.Y < 180 && point.Y > 90)
+                    if (point.Y < 210 && point.Y > 120)
                     {
                         if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.2;
                         else camera.zoomValue += camera.zoomValue * 0.1;
@@ -1021,7 +1010,7 @@ namespace AgOpenGPS
                     }
 
                     //++
-                    if (point.Y < 90)
+                    if (point.Y < 120 && point.Y > 30)
                     {
                         if (camera.zoomValue <= 20)
                         { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 6.0) camera.zoomValue = 6.0; }
@@ -1052,6 +1041,21 @@ namespace AgOpenGPS
 
             ResetHelpBtn();
         }
+
+        private void SpeedLimitExceeded()
+        {
+            if (isMetric)
+            {
+                TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " " 
+                    + vehicle.functionSpeedLimit.ToString() + " "+ gStr.gsKMH);
+            }
+            else
+            {
+                TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " "
+                    + (vehicle.functionSpeedLimit* 0.621371).ToString() + " " + gStr.gsMPH);
+           }
+        }
+
         private void oglZoom_MouseClick(object sender, MouseEventArgs e)
         {
             if ((sender as Control).IsDragging()) return;
@@ -1124,7 +1128,6 @@ namespace AgOpenGPS
 
         public string Latitude { get { return Convert.ToString(Math.Round(pn.latitude, 7)); } }
         public string Longitude { get { return Convert.ToString(Math.Round(pn.longitude, 7)); } }
-
         public string SatsTracked { get { return Convert.ToString(pn.satellitesTracked); } }
         public string HDOP { get { return Convert.ToString(pn.hdop); } }
         public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }
@@ -1174,14 +1177,14 @@ namespace AgOpenGPS
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed*0.62137, 1));
+                return Convert.ToString(Math.Round(avgSpeed*0.62137, 2));
             }
         }
         public string SpeedKPH
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed, 1));
+                return Convert.ToString(Math.Round(avgSpeed, 2));
             }
         }
 

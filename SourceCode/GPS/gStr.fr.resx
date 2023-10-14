@@ -285,6 +285,9 @@
   <data name="gsHelp" xml:space="preserve">
     <value>Aide</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Mauvaise direction? Appuyez sur Véhicule</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Pouce</value>
   </data>
@@ -438,6 +441,9 @@
   <data name="gsSimulatorOn" xml:space="preserve">
     <value>Simulateur</value>
   </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Ralentir en dessous</value>
+  </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>Courbe AB lisse</value>
   </data>
@@ -464,6 +470,9 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Sauver</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Trop vite</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Vue du champ</value>

@@ -36,8 +36,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (areaBoundaryOuterLessInner < 404048) return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N2") + " ha";
-                else return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N1") + " ha";
+                if (areaBoundaryOuterLessInner < 404048) return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N2");
+                else return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N1");
             }
         }
 
@@ -45,8 +45,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if ((areaBoundaryOuterLessInner) < 404048) return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N2") + " ac";
-                else return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N1") + " ac";
+                if ((areaBoundaryOuterLessInner) < 404048) return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N2");
+                else return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N1");
             }
         }
 
@@ -76,9 +76,9 @@ namespace AgOpenGPS
         }
 
         //User Distance strings
-        public string DistanceUserMeters => Convert.ToString((ushort)distanceUser) + " m";
+        public string DistanceUserMeters => Convert.ToString(Math.Round(distanceUser,3));
 
-        public string DistanceUserFeet => Convert.ToString((ushort)(distanceUser * glm.m2ft)) + " ft";
+        public string DistanceUserFeet => Convert.ToString(Math.Round((distanceUser * glm.m2ft),1));
 
         //remaining area to be worked
         public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") + " ha";
@@ -93,7 +93,7 @@ namespace AgOpenGPS
             {
                 if (areaBoundaryOuterLessInner > 10)
                 {
-                    barPercent = 100 - ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
+                    barPercent = ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
                     return barPercent.ToString("N1") + "%";
                 }
                 else
@@ -118,8 +118,8 @@ namespace AgOpenGPS
             }
         }
 
-        public string WorkRateHectares => (mf.tool.width * mf.avgSpeed * 0.1).ToString("N1");
-        public string WorkRateAcres => (mf.tool.width * mf.avgSpeed * 0.2471).ToString("N1");
+        public string WorkRateHectares => (mf.tool.width * mf.avgSpeed * 0.1).ToString("N1") + " ha/hr";
+        public string WorkRateAcres => (mf.tool.width * mf.avgSpeed * 0.2471).ToString("N1") + " ac/hr";
 
         //constructor
         public CFieldData(FormGPS _f)

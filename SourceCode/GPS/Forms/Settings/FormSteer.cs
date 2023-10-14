@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Properties;
+using System;
 using System.Drawing;
 using System.Windows.Forms; 
 
@@ -119,6 +120,17 @@ namespace AgOpenGPS
 
             nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
 
+            //Stanley guidance
+
+            if (mf.isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
             toSend = false;
 
             int sett = Properties.Settings.Default.setArdSteer_setting0;
@@ -153,6 +165,9 @@ namespace AgOpenGPS
 
             if ((sett & 1) == 0) cboxDanfoss.Checked = false;
             else cboxDanfoss.Checked = true;
+
+            if ((sett & 8) == 0) cboxXY.Text = "X";
+            else cboxXY.Text = "Y";
 
             if ((sett & 2) == 0) cboxPressureSensor.Checked = false;
             else cboxPressureSensor.Checked = true;
@@ -573,9 +588,18 @@ namespace AgOpenGPS
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
+            this.Top = 0;
+            this.Left = 0;
+
             if (windowSizeState++ > 0) windowSizeState = 0;
-            if (windowSizeState == 1) this.Size = new System.Drawing.Size(960,720);
-            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(388,480);
+            if (windowSizeState == 1)
+            {
+                this.Size = new System.Drawing.Size(960, 720);
+            }
+            else if (windowSizeState == 0)
+            {
+                this.Size = new System.Drawing.Size(388, 480);
+            }
 
         }
 
@@ -752,10 +776,18 @@ namespace AgOpenGPS
             if (cboxPressureSensor.Checked) sett |= set;
             else sett &= reset;
 
+            //bit 2
             set <<= 1;
             reset <<= 1;
             reset += 1;
             if (cboxCurrentSensor.Checked) sett |= set;
+            else sett &= reset;
+
+            //bit 3
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxXY.Text == "Y") sett |= set;
             else sett &= reset;
 
             Properties.Settings.Default.setArdSteer_setting1 = (byte)sett;
@@ -984,6 +1016,27 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
         }
 
+        private void cboxXY_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxXY, gStr.gsHelp);
+        }
+
+        private void btnStanleyPure_Click(object sender, EventArgs e)
+        {
+            mf.isStanleyUsed = !mf.isStanleyUsed;
+
+            if (mf.isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
+            Properties.Settings.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
+            Properties.Settings.Default.Save();
+        }
 
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
         {

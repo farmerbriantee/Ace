@@ -381,13 +381,13 @@ namespace AgOpenGPS
                         line = reader.ReadLine();
                         offs = line.Split(',');
 
-                        pn.latStart = double.Parse(offs[0], CultureInfo.InvariantCulture);
-                        pn.lonStart = double.Parse(offs[1], CultureInfo.InvariantCulture);
+                        CNMEA.latStart = double.Parse(offs[0], CultureInfo.InvariantCulture);
+                        CNMEA.lonStart = double.Parse(offs[1], CultureInfo.InvariantCulture);
 
                         if (timerSim.Enabled)
                         {
-                            pn.latitude = pn.latStart;
-                            pn.longitude = pn.lonStart;
+                            pn.latitude =  CNMEA.latStart;
+                            pn.longitude = CNMEA.lonStart;
 
                             sim.latitude = Properties.Settings.Default.setGPS_SimLatitude = pn.latitude;
                             sim.longitude = Properties.Settings.Default.setGPS_SimLongitude = pn.longitude;

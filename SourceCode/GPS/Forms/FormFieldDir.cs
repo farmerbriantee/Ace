@@ -93,7 +93,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    mf.pn.latStart = mf.pn.latitude; mf.pn.lonStart = mf.pn.longitude;
+                    CNMEA.latStart = mf.pn.latitude; CNMEA.lonStart = mf.pn.longitude;
 
                     mf.pn.SetLocalMetersPerDegree();
 

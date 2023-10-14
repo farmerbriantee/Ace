@@ -11,7 +11,7 @@ namespace AgOpenGPS
         public double prevLatitude, prevLongitude;
 
         //local plane geometry
-        public double latStart, lonStart;
+        public static double latStart, lonStart;
         public double mPerDegreeLat, mPerDegreeLon;
 
         //our current fix
@@ -45,7 +45,7 @@ namespace AgOpenGPS
         {
             //average the speed
             if (speed > 70) speed = 70;
-            mf.avgSpeed = (mf.avgSpeed * 0.85) + (speed * 0.15);
+            mf.avgSpeed = (mf.avgSpeed * 0.75) + (speed * 0.25);
         }
 
         public void SetLocalMetersPerDegree()

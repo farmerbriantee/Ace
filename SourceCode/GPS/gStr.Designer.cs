@@ -565,6 +565,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong Direction? Tap Vehicle.
+        /// </summary>
+        public static string gsIfWrongDirectionTapVehicle {
+            get {
+                return ResourceManager.GetString("gsIfWrongDirectionTapVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inch.
         /// </summary>
         public static string gsInches {
@@ -1024,6 +1033,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Slow Down Below.
+        /// </summary>
+        public static string gsSlowDownBelow {
+            get {
+                return ResourceManager.GetString("gsSlowDownBelow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Smooth AB Curve.
         /// </summary>
         public static string gsSmoothABCurve {
@@ -1101,6 +1119,15 @@ namespace AgOpenGPS {
         public static string gsToFile {
             get {
                 return ResourceManager.GetString("gsToFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too Fast.
+        /// </summary>
+        public static string gsTooFast {
+            get {
+                return ResourceManager.GetString("gsTooFast", resourceCulture);
             }
         }
         
@@ -2521,6 +2548,15 @@ namespace AgOpenGPS {
         public static string hc_cboxTramOnBackBuffer {
             get {
                 return ResourceManager.GetString("hc_cboxTramOnBackBuffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select IMU orientation axis so when the vehicle rolls to the side, the roll value changes. .
+        /// </summary>
+        public static string hc_cboxXY {
+            get {
+                return ResourceManager.GetString("hc_cboxXY", resourceCulture);
             }
         }
         
